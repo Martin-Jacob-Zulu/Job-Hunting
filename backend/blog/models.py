@@ -11,7 +11,7 @@ class Categories(models.TextChoices):
     CULTURE = 'culture'
     POLITICS = 'politics'
     BUSINESS = 'business'
-    OPINION = 'opinion'
+    WORK = 'work'
     SCIENCE = 'science'
     HEALTH = 'health'
     STYLE = 'style'
