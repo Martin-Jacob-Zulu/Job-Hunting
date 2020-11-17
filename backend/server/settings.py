@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'blog',
+    'sellers',
     'rest_framework',
     'corsheaders',
     'django_summernote',
