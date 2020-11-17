@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
-class AccountManager(BaseUserManager):
+class UserAccountManager(BaseUserManager):
     def create_user(self, name, email, username, password=None):
         if not name:
             raise ValueError("Please enter your name")
@@ -37,7 +37,7 @@ class AccountManager(BaseUserManager):
         return user
 
 
-class Account(AbstractBaseUser):
+class UserAccount(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=200)
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=64, unique=True)
@@ -51,7 +51,13 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'username']
 
-    objects = AccountManager()
+    objects = UserAccountManager()
+
+    def get_full_name(self):
+        return self.name
+
+    def get_short_name(self):
+        return self.name
 
     def __str__(self):
         return self.username

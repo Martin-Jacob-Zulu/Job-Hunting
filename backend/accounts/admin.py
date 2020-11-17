@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Account
+from .models import UserAccount
 
 
 class AccountAdmin(admin.ModelAdmin):
@@ -11,4 +11,4 @@ class AccountAdmin(admin.ModelAdmin):
     readonly_fields = ('username', 'email', 'password')
 
 
-admin.site.register(Account, AccountAdmin)
+admin.site.register(UserAccount, AccountAdmin)
