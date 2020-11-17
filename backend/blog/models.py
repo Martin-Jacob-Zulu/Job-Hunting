@@ -1,6 +1,10 @@
 from django.db import models
 from datetime import datetime
 from django.template.defaultfilters import slugify
+from django.conf import settings
+from django.db.models.signals import pre_save, post_delete, post_save
+# from django.utils.text import slugify
+from django.dispatch import receiver
 
 
 class Categories(models.TextChoices):
@@ -19,10 +23,11 @@ class Categories(models.TextChoices):
 
 
 class BlogPost(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     slug = models.SlugField()
-    category = models.CharField(
-        max_length=50, choices=Categories.choices, default=Categories.BUSINESS)
+    category = models.CharField(max_length=50, choices=Categories.choices, default=Categories.BUSINESS)
     thumbnail = models.ImageField(upload_to='photos/%Y/%m/%d')
     excerpt = models.CharField(max_length=150)
     uploaded = models.DateTimeField(auto_now_add=True)
@@ -38,7 +43,7 @@ class BlogPost(models.Model):
 
         count = 1
         slug = original_slug
-        while (queryset):
+        while queryset:
             slug = original_slug + '-' + str(count)
             count += 1
             queryset = BlogPost.objects.all().filter(slug__iexact=slug).count()
