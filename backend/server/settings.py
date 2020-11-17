@@ -3,11 +3,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&eoi*+*3*u#h1z@#0s(2r5f&l==k*ln#dqwbbg04cs_!&-4b2-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -21,6 +16,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'blog',
+    'contacts',
     'sellers',
     'rest_framework',
     'corsheaders',
@@ -74,14 +70,29 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taruja_network',
-        'USER': 'postgres',
-        'PASSWORD': 'never@give.up',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'taruja_network',
+#         'USER': 'postgres',
+#         'PASSWORD': 'never@give.up',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'team.taruja@gmail.com'
+EMAIL_HOST_PASSWORD = 'xeuuohrpphxgshup'
+EMAIL_USE_TLS = True
 
 
 # Password validation
