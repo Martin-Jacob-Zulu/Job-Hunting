@@ -24,7 +24,6 @@ class Categories(models.TextChoices):
 
 class BlogPost(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
     title = models.CharField(max_length=100)
     slug = models.SlugField()
     category = models.CharField(max_length=50, choices=Categories.choices, default=Categories.BUSINESS)
