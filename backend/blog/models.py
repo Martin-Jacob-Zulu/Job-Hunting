@@ -30,10 +30,10 @@ class BlogPost(models.Model):
     thumbnail = models.ImageField(upload_to='photos/%Y/%m/%d')
     excerpt = models.CharField(max_length=150)
     uploaded = models.DateTimeField(auto_now_add=True)
-    month = models.CharField(max_length=3)
-    day = models.CharField(max_length=2)
+    date_updated = models.DateTimeField(auto_now=True)
     content = models.TextField()
     featured = models.BooleanField(default=False)
+    trending = models.BooleanField(default=False)
     date_created = models.DateTimeField(default=datetime.now, blank=True)
 
     def save(self, *args, **kwargs):
