@@ -23,18 +23,17 @@ class Categories(models.TextChoices):
 
 
 class BlogPost(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    slug = models.SlugField()
-    category = models.CharField(max_length=50, choices=Categories.choices, default=Categories.BUSINESS)
-    thumbnail = models.ImageField(upload_to='photos/%Y/%m/%d')
-    excerpt = models.CharField(max_length=150)
-    uploaded = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)
-    content = models.TextField()
-    featured = models.BooleanField(default=False)
-    trending = models.BooleanField(default=False)
-    date_created = models.DateTimeField(default=datetime.now, blank=True)
+    author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title           = models.CharField(max_length=100)
+    slug            = models.SlugField()
+    category        = models.CharField(max_length=50, choices=Categories.choices, default=Categories.BUSINESS)
+    image           = models.ImageField(upload_to='photos/%Y/%m/%d')
+    excerpt         = models.CharField(max_length=150)
+    date_created    = models.DateTimeField(auto_now_add=True)
+    date_updated    = models.DateTimeField(auto_now=True)
+    content         = models.TextField()
+    featured        = models.BooleanField(default=False)
+    trending        = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         original_slug = slugify(self.title)

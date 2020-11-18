@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'contacts',
     'sellers',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_summernote',
     'django.contrib.admin',
@@ -144,15 +145,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     ],
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASSES': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 15
+    'PAGE_SIZE': 10
 }
 
 
