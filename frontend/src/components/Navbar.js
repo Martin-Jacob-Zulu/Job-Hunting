@@ -1,32 +1,37 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Button } from './Button';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+
+function Navbar() {
+  const [click, setClick] = useState(false);
+
+  const closeMobileMenu = () => setClick(false);
 
 
-const navbar = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" exact to = '/'>Job Watcher</Link>
-        <button 
-            className="navbar-toggler" 
-            type="button" 
-            data-toggle="collapse" 
-            data-target="#navbarNav" 
-            aria-controls="navbarNav" 
-            aria-expanded="false" 
-            aria-label="Toggle navigation"
-        >
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav"> 
-            <ul className="navbar-nav">
-            <li className="nav-item active">
-                <NavLink className="nav-link" exact to = '/'>Home <span className="sr-only">(current)</span></NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink className="nav-link" exact to = '/blog'>Blog</NavLink>
-            </li>
-            </ul>
+  return (
+    <>
+      <nav className='navbar'>
+        <div className='navbar-container'>
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+            TARUJA
+            <i class='fab fa-typo3' />
+          </Link>
+          <div className='nav-button'>
+            <Button buttonStyle='btn--outline'>SIGN UP</Button>
+          </div>
+        
         </div>
-    </nav>
-)
+        <br />
+        
+      </nav>
+      <nav className='searchbar-nav'>
+          <div className='searchbar-container'>
+            <input className='search-bar' placeholder='Search...' />
+            </div>
+        </nav>
+    </>
+  );
+}
 
-export default navbar;
+export default Navbar;

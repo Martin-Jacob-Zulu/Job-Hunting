@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Blog from './components/Blog';
 import BlogDetail from './components/BlogDetail';
 import Category from './components/Category';
+import './App.css';
 
 const App = () => ( 
     <Router >
