@@ -24,11 +24,11 @@ const Category = (props) => {
                 setBlogs(res.data);
             }
             catch (err) {
-
+                console.log(err)
             }
         }
         fetchData();
-    }, [props.match.params.id])
+    }, [props.match.params.id]);
 
     const capitalizeFirstLetter = (word) => {
         if (word)

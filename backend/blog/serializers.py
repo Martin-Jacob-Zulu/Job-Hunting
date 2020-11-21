@@ -8,7 +8,8 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogPost
-        fields = [ 'username', 'title', 'category', 'image', 'excerpt', 'content', 'date_updated', 'date_created',]
+        fields = ['username', 'title', 'category', 'image',
+                  'excerpt', 'content', 'date_updated', 'date_created', ]
         lookup_field = 'slug'
 
     def get_username_from_author(self, blog_post):
